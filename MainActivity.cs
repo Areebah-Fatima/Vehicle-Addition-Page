@@ -66,3 +66,33 @@ namespace TripLogApp
         }
     }
 }
+
+namespace UTLP
+{
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
+    public class MainActivity : AppCompatActivity
+    {
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+            // Set our view from the "main" layout resource
+            SetContentView(Resource.Layout.activity_main);
+
+            var Button = FindViewById<Button>(Resource.Id.TestButton1);
+            Button.Click += (Sender, Args) =>
+            {
+                // Toast.MakeText(Application.Context, Resources.GetString(Resource.String.app_name),
+                //     ToastLength.Long).Show();
+                var ActivityStartIntent = new Intent(this, typeof(ManualTripAddActivity));
+                StartActivity(ActivityStartIntent);
+            };
+
+            var Button2 = FindViewById<Button>(Resource.Id.TestButton2);
+            Button2.Click += (Sender, Args) =>
+            {
+                var ActivityStartIntent = new Intent(this, typeof(FuelAddActivity));
+                StartActivity(ActivityStartIntent);
+            };
+        }
+    }
+}
